@@ -47,7 +47,7 @@ const QueryBox = () => {
   const onSubmit = (data: FieldValues) => {
     console.log(data);
     setIsLoading(true);
-    const { request, cancel } = createParentalService().post([
+    const { request, cancel } = createResponseService().post([
       {
         role: "user",
         content: formatString(data.subject, data.modifier, data.additional),
