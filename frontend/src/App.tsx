@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 
 import QueryBox from "./components/QueryBox";
 import QueryForm from "./components/QueryForm";
-import ChatBox from "./components/ChatBox";
+import ChatRoom from "./components/ChatRoom";
 
 function App() {
   return (
@@ -12,9 +11,15 @@ function App() {
       <br />
       <QueryForm />
       <br />
-      <ChatBox />
+      <ChatRoom />
     </div>
   );
 }
 
 export default App;
+
+/**
+ * <QueryForm />
+      <br />
+      <ChatRoom />
+ */

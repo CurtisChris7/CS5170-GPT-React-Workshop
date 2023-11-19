@@ -1,13 +1,22 @@
+/**
+ * This file contains the defition and logic for the creating a query form component.
+ * This includes the submit button as well since this is treated as a form.
+ * The component interacts with the backend using pre-defined routes imported from the backend-services module.
+ * @author Christopher Curtis
+ */
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 import {
-  createResponseService,
+  // Backend model route options
+  createResponseService, // Default
   createParentalService,
   createExpertResponseService,
+  createLikeService,
 } from "../services/backend-service";
 import ExpandableText from "./ExpandableText";
 
+// This defines the schema for the form used, expand here for form input validation
 const schema = z.object({
   subject: z.string(),
   modifier: z.string(),
@@ -15,6 +24,13 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
+/**
+ * Formats the string in a parsable way for the GPT model on the backend
+ * @param subject the subject to ask the GPT model about
+ * @param modifier tone modifiers to tailor the response
+ * @param additional additional info the for the model to be aware of
+ * @return formated string to be sent as query to model
+ */
 const formatString = (
   subject: string,
   modifier: string,
@@ -32,39 +48,53 @@ const formatString = (
   );
 };
 
-const QueryBox = () => {
+/**
+ * Creates a query box, interacting with a gpt backend service.
+ * Created using a React Hook Form, with fields as defined in the above schema.
+ * @returns a QueryBox component
+ */
+const QueryForm = () => {
+  // These variables are used for interacting with the form's state
   const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
+    register, // Tracks the form fields
+    handleSubmit, // Calls the on-submit logic
+    formState: { errors, isValid }, // Tracks errors and wether or not the form is valid
   } = useForm<FormData>();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  // These variables trach the state of the component
+  const [isLoading, setIsLoading] = useState(false); // Wether to show loading animation or not
+  const [error, setError] = useState(""); // The error message (if any)
+  const [queryResponse, setQueryResponse] = useState(""); // The most recent query response
 
-  const [queryResponse, setQueryResponse] = useState("");
-
+  // Handles the on-sumbit logic for the form
   const onSubmit = (data: FieldValues) => {
     console.log(data);
-    setIsLoading(true);
+    setIsLoading(true); // Triggers the loading animation
+
+    // Creates post request for backend gpt model
     const { request, cancel } = createResponseService().post([
       {
         role: "user",
         content: formatString(data.subject, data.modifier, data.additional),
       },
     ]);
+
+    // Request is sent
     request
       .then((res) => {
-        setQueryResponse(res.data);
+        // Succesful request logic
+        setQueryResponse(res.data); // We update the most recent query response
         console.log(res.data);
-        setIsLoading(false);
+        setIsLoading(false); // We stop the loading animation
       })
       .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
+        // Error handling logic
+        setError(err.message); // We display the error message
+        setIsLoading(false); // We stop the loading animation
       });
   };
 
+  // We return the react markup needed for the component
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,4 +140,4 @@ const QueryBox = () => {
   );
 };
 
-export default QueryBox;
+export default QueryForm;

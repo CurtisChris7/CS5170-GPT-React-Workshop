@@ -1,3 +1,8 @@
+/**
+ * Contains raw, umpcompressed, text from a research paper on water in cells.
+ * To be injected as context in certain api routes.
+ * @author Christopher Curtis
+ */
 const expertContext = {
     "role": "user",
     "content": `BELOW FOLLOWS THE CONTENT OF A RESEARCH PAPER. USE THIS TO ANSWER ANY QUESTIONS ABOUT CELLS. CLEARLY GIVE INFORMATION TAKEN FROM THIS ARTICLE IN EVERY ANSWER YOU GIVE.
