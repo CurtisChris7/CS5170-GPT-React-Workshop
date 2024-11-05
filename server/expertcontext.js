@@ -4,7 +4,7 @@
  * @author Christopher Curtis
  */
 const expertContext = {
-    "role": "user",
+    "role": "system",
     "content": `BELOW FOLLOWS THE CONTENT OF A RESEARCH PAPER. USE THIS TO ANSWER ANY QUESTIONS ABOUT CELLS. CLEARLY GIVE INFORMATION TAKEN FROM THIS ARTICLE IN EVERY ANSWER YOU GIVE.
     Abstract
     Liquid water is a highly versatile material. Although it is formed from the tiniest of molecules, it can shape and control biomolecules. The hydrogen-bonding properties of water are crucial to this versatility, as they allow water to execute an intricate three-dimensional 'ballet', exchanging partners while retaining complex order and enduring effects. Water can generate small active clusters and macroscopic assemblies, which can both transmit information on different scales.

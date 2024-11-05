@@ -72,7 +72,7 @@ const QueryForm = () => {
     setIsLoading(true); // Triggers the loading animation
 
     // Creates post request for backend gpt model
-    const { request, cancel } = createResponseService().post([
+    const { request, cancel } = createResponseService().postMessages([
       {
         role: "user",
         content: formatString(data.subject, data.modifier, data.additional),

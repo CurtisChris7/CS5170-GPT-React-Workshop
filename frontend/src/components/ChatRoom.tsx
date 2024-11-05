@@ -63,7 +63,7 @@ function ChatRoom() {
 
     // console.log("PAYLOAD", payload);
     // We construct post request to include the interaction history
-    const { request, cancel } = createResponseService().post(payload);
+    const { request, cancel } = createResponseService().postMessages(payload);
 
     // Sends request
     request
