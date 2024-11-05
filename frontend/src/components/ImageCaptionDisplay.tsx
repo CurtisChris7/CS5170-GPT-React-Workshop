@@ -1,3 +1,7 @@
+/**
+ * This file contains the defition and logic for the creating an image-caption pair display component.
+ * @author Christopher Curtis
+ */
 import { FaRobot } from "react-icons/fa6";
 import "./AICaption.css";
 
@@ -7,10 +11,10 @@ interface Props {
 }
 
 /**
- *
- * @param img
- * @param caption
- * @returns
+ * Creates a container component displaying an image and caption pair
+ * @param img image to be displayed
+ * @param caption caption to be displayed
+ * @returns container component containing an image-caption pair
  */
 const ImageCaptionDisplay = ({ img, caption }: Props) => {
   return (
