@@ -36,5 +36,3 @@ const ImageCaptionDisplay = ({ img, caption }: Props) => {
 };
 
 export default ImageCaptionDisplay;
-
-//<img src={"http://localhost:8080/image"} height={200} width={300}></img>
