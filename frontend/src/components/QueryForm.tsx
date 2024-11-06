@@ -20,6 +20,7 @@ import ExpandableText from "./ExpandableText";
 const schema = z.object({
   subject: z.string(),
   modifier: z.string(),
+  ignore: z.string(),
   additional: z.string(),
 });
 type FormData = z.infer<typeof schema>;
@@ -34,6 +35,7 @@ type FormData = z.infer<typeof schema>;
 const formatString = (
   subject: string,
   modifier: string,
+  ignore: string,
   additional: string
 ) => {
   return (
@@ -41,6 +43,8 @@ const formatString = (
     subject +
     "], answer me with the following tones in mind: [" +
     modifier +
+    "], ignore the following topics [" +
+    ignore +
     "]" +
     ", also please keep this in mind : [" +
     additional +
@@ -75,7 +79,12 @@ const QueryForm = () => {
     const { request, cancel } = createResponseService().postMessages([
       {
         role: "user",
-        content: formatString(data.subject, data.modifier, data.additional),
+        content: formatString(
+          data.subject,
+          data.modifier,
+          data.additional,
+          data.ignore
+        ),
       },
     ]);
 
@@ -117,6 +126,16 @@ const QueryForm = () => {
           <input
             {...register("modifier")}
             id="modifier"
+            type="text"
+            className="form-control"
+          />
+
+          <label htmlFor="ignore" className="form-label">
+            Topics to ignore:
+          </label>
+          <input
+            {...register("ignore")}
+            id="ignore"
             type="text"
             className="form-control"
           />

@@ -78,6 +78,10 @@ const createParentalService = () => {
     return new HttpService("/parental");
 }
 
+const createVeryRudeService = () => {
+    return new HttpService("/rude");
+}
+
 /**
  * Creates a connection for gpt interactions with specific domain knowledge.
  * @returns new HttpService object to the expert route.
@@ -88,6 +92,10 @@ const createExpertResponseService = () => {
 
 const createImageService = () => {
     return new HttpService("/image");
+}
+
+const createCustomChatService = () => {
+    return new HttpService("/custom-image-chat");
 }
 
 const createSampleImageService = () => {
@@ -111,4 +119,4 @@ const createLikeService = () => {
     return new HttpService("/like");
 }
 
-export { createResponseService, createParentalService, createExpertResponseService, createLikeService, createSampleImageService, createImageService, postPayload, createService };
+export { createResponseService, createCustomChatService, createVeryRudeService, createParentalService, createExpertResponseService, createLikeService, createSampleImageService, createImageService, postPayload, createService };

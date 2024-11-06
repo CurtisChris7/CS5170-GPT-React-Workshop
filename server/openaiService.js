@@ -8,7 +8,7 @@ import fs from 'fs';
 
 // Creates an OpenAI connection using the provided api key
 const openai = new OpenAI({
-    apiKey: "<YOUR API KEY HERE>"
+    apiKey: ""
 });
 
 /**
@@ -18,7 +18,7 @@ const openai = new OpenAI({
  * @returns gpt response object
  */
 const getGptResonse =  async (messages) => await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     messages: messages,
 });
 

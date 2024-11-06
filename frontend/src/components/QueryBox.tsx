@@ -12,6 +12,7 @@ import {
   createResponseService, // Default
   createParentalService,
   createExpertResponseService,
+  createVeryRudeService,
   createLikeService,
 } from "../services/backend-service";
 import ExpandableText from "./ExpandableText";
@@ -48,7 +49,7 @@ const QueryBox = () => {
     setIsLoading(true); // Triggers the loading animation
 
     // Creates post request for backend gpt model
-    const { request, cancel } = createResponseService().postMessages([
+    const { request, cancel } = createVeryRudeService().postMessages([
       { role: "user", content: data.query },
     ]);
 
